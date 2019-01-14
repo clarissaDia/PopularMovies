@@ -34,6 +34,7 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.PosterView
     public PosterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         boolean attachToParentImmediately = false;
+        context = viewGroup.getContext();
         View view = inflater.inflate(R.layout.grid_movie_item, viewGroup,attachToParentImmediately);
         return new PosterViewHolder(view);
     }
@@ -75,8 +76,7 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.PosterView
 
         @Override
         public void onClick(View poster) {
-            int posterPosition = getAdapterPosition();
-            mPosterClick.onClick(posterPosition);
+            mPosterClick.onClick(getAdapterPosition());
 
         }
     }

@@ -28,17 +28,18 @@ private ArrayList<Movies> moviesArrayList;
         setContentView(R.layout.activity_main);
         moviesArrayList = new ArrayList<>();
 
+        URL url = NetworkUtils.buildUrl(NetworkUtils.SORT_POPULAR);
+        new fetchMovies().execute(url);
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_movie_main);
         mErrorTextView = (TextView) findViewById(R.id.tv_error);
 
-        URL url = NetworkUtils.buildUrl(NetworkUtils.SORT_POPULAR);
-        new fetchMovies().execute(url);
 
         GridLayoutManager gridManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(gridManager);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mPosterAdapter);
+        posterClickListener = this;
     }
 @Override
 public void onClick(int posterPosition) {
