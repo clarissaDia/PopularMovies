@@ -33,6 +33,7 @@ private ArrayList<Movies> moviesArrayList;
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_movie_main);
+        mPosterAdapter = new PosterAdapter(moviesArrayList, posterClickListener);
         mErrorTextView = (TextView) findViewById(R.id.tv_error);
 
 
@@ -46,10 +47,10 @@ public void onClick(int posterPosition) {
 
         }
 
-public class fetchMovies extends AsyncTask<URL,Void,String> {
+public class fetchMovies extends AsyncTask<URL,Void,ArrayList<Movies>> {
 
     @Override
-    protected String doInBackground(URL... urls) {
+    protected ArrayList<Movies> doInBackground(URL... urls) {
         URL url = urls[0];
         String response = null;
         try {
@@ -60,14 +61,14 @@ public class fetchMovies extends AsyncTask<URL,Void,String> {
         if (response != null){
             moviesArrayList = JsonUtils.estractMoviesFromJson(response);
         }
-        return response;
+        return moviesArrayList;
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        PosterAdapter posterAdapter = new PosterAdapter(moviesArrayList,posterClickListener);
-        mRecyclerView.setAdapter(posterAdapter);
+    protected void onPostExecute(ArrayList<Movies> movies) {
+        super.onPostExecute(movies);
+       PosterAdapter posterAdapter = new PosterAdapter(movies, posterClickListener);
+       mRecyclerView.setAdapter(posterAdapter);
     }
 }
 
