@@ -10,9 +10,7 @@ public class Movies implements Parcelable {
     private String mAverageVote;
     private String mImage;
 
-
-
-    public Movies(String title, String synopsis, String releaseDate, String averageVote, String image){
+    public Movies(String title, String synopsis, String releaseDate, String averageVote, String image) {
 
         this.mTitle = title;
         this.mSynopsis = synopsis;
@@ -21,7 +19,7 @@ public class Movies implements Parcelable {
         this.mImage = image;
     }
 
-    private Movies (Parcel parcel){
+    private Movies(Parcel parcel) {
         mTitle = parcel.readString();
         mSynopsis = parcel.readString();
         mReleaseDate = parcel.readString();
@@ -29,9 +27,10 @@ public class Movies implements Parcelable {
         mImage = parcel.readString();
     }
 
-
     @Override
-    public int describeContents() {return 0; }
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
@@ -40,10 +39,9 @@ public class Movies implements Parcelable {
         parcel.writeString(mReleaseDate);
         parcel.writeString(mAverageVote);
         parcel.writeString(mImage);
-
     }
 
-    public static final Parcelable.Creator<Movies> CREATOR = new Parcelable.Creator<Movies>(){
+    public static final Parcelable.Creator<Movies> CREATOR = new Parcelable.Creator<Movies>() {
         @Override
         public Movies createFromParcel(Parcel parcel) {
             return new Movies(parcel);
@@ -55,38 +53,43 @@ public class Movies implements Parcelable {
         }
     };
 
-    public String getTitle (){
+    public String getTitle() {
         return mTitle;
     }
-    public void setTile (String title){
+
+    public void setTile(String title) {
         this.mTitle = title;
     }
-    public String getOverView (){
+
+    public String getOverView() {
         return mSynopsis;
     }
 
-    public void setOverView (String synopsis){
+    public void setOverView(String synopsis) {
         this.mSynopsis = synopsis;
     }
-    public String getReleaseDate () {
+
+    public String getReleaseDate() {
         return mReleaseDate;
     }
 
-    public void setReleaseDate (String releaseDate){
+    public void setReleaseDate(String releaseDate) {
         this.mReleaseDate = releaseDate;
     }
 
-    public String getVote (){
+    public String getVote() {
         return mAverageVote;
     }
-    public void setVote (String averageVote){
+
+    public void setVote(String averageVote) {
         this.mAverageVote = averageVote;
     }
 
-    public String getImage (){
+    public String getImage() {
         return mImage;
     }
-    public void setImage (String image){
+
+    public void setImage(String image) {
         this.mImage = image;
     }
 }
